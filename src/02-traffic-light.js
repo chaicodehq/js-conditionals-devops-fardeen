@@ -1,3 +1,5 @@
+
+
 /**
  * 🚦 The Driving Simulator
  *
@@ -15,12 +17,28 @@
  * Rules:
  *   - The function should be case-insensitive
  *     (e.g., "GREEN", "Green", "green" should all return "GO")
- *
+ * 
  * Hint: Use a switch statement!
  *
- * @param {string} color - The traffic light signal
- * @returns {string} The driving action to take
+ * @param {String} color - The traffic light signal
+ * @returns {String} The driving action to take
  */
 export function getTrafficAction(color) {
-  // Your code here
+
+  const signal = String(color).toLowerCase().trim();
+
+  switch (signal)
+  {
+    case "green":
+      return "GO";
+    case "yellow":
+      return "SLOW DOWN";
+    case "red":
+      return "STOP";
+    case "flashing red":
+      return "STOP AND PROCEED WITH CAUTION";
+    default:
+      return "INVALID SIGNAL";
+  }
 }
+
