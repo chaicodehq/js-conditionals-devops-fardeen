@@ -30,5 +30,33 @@
  * @returns {{ tipPercentage: number, tipAmount: number, totalAmount: number } | null}
  */
 export function calculateTip(billAmount, serviceRating) {
-  // Your code here
+  // 1. Corrected Validation Logic
+  const isValidRating = Number.isInteger(serviceRating) && serviceRating >= 1 && serviceRating <= 5;
+  
+  if (billAmount <= 0 || !isValidRating) {
+    return null;
+  }
+
+  // 2. Map rating to percentage
+  const ratingToTip = {
+    1: 5,
+    2: 10,
+    3: 15,
+    4: 20,
+    5: 25,
+  };
+
+  const tipPercentage = ratingToTip[serviceRating];
+
+  // 3. Perform Calculations
+  // We use parseFloat or Number because toFixed returns a string
+  const tipAmount = Number((billAmount * (tipPercentage / 100)).toFixed(2));
+  const totalAmount = Number((billAmount + tipAmount).toFixed(2));
+
+  // 4. Return the Object (Fixed syntax: added missing comma and corrected spelling)
+  return {
+    tipPercentage,
+    tipAmount,
+    totalAmount
+  };
 }
